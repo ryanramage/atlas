@@ -1,0 +1,5 @@
+atlas
+
+- a couchapp for organizing places
+- commonly used in a garden as a central geodata hub (sync "type": "garden-place" docs) 
+- built with Kanso
