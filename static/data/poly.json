@@ -1,0 +1,29 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-114.37, 62.45]
+             },
+            "properties" : {
+                "name" : "Yellowknife",
+                "start" : 35,
+                "duration" : 1
+            }
+        },
+        {
+            "type" : "Feature",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [-112.37, 62.45]
+             },
+            "properties" : {
+                "name" : "Other",
+                "start" : 65,
+                "duration" : 1
+            }
+        }
+    ]
+}
