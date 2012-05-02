@@ -14,7 +14,8 @@ $(document).ready(function(){
             bounds.getNorthEast().lat
         ];
         $.ajax({
-            url: './data?bbox=' + args.join(',') + '&limit=20',
+            //url: './data?bbox=' + args.join(',') + '&limit=20',
+            url: './data?bbox=' + args.join(',') ,
             dataType: 'json',
             success: function(data) {
                 if (geojson) {
@@ -29,7 +30,7 @@ $(document).ready(function(){
 
     // initialize the map on the "map" div with a given center and zoom
     var map = new L.Map('map', {
-        center: new L.LatLng(43.16,-89.20),
+        center: new L.LatLng(50.86,-115.59),
         zoom: 13
     });
 
