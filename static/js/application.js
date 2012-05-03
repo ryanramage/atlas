@@ -6,6 +6,17 @@ $(document).ready(function(){
 
     var updateItemsDebounced = _.debounce(updateItems, 1000);
 
+
+    var geojsonMarkerOptions = {
+        radius: 8,
+        fillColor: "#ff7800",
+        color: "#000",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+    };
+
+
     function updateItems(bounds) {
         var args = [
             bounds.getSouthWest().lng,
@@ -21,8 +32,18 @@ $(document).ready(function(){
                 if (geojson) {
                     map.removeLayer(geojson);
                 }
-
-                map.addLayer(geojson = new L.GeoJSON(data));
+                geojson = new L.GeoJSON(null, {
+                    pointToLayer: function (latlng) {
+                        return new L.CircleMarker(latlng, geojsonMarkerOptions);
+                    }
+                });
+                geojson.on("featureparse", function (e) {
+                    if (e.properties && e.properties.properties){
+                        e.layer.bindPopup(e.properties.properties.GEONAME);
+                    }
+                });
+                geojson.addGeoJSON(data);
+                map.addLayer(geojson);
             }
         });
 
@@ -42,6 +63,9 @@ $(document).ready(function(){
     map.addLayer(cloudmade);
 
     map.on('dragend', function(evt) {
+        updateItemsDebounced(map.getBounds());
+    });
+    map.on('zoomend', function(evt) {
         updateItemsDebounced(map.getBounds());
     });
 
